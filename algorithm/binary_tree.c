@@ -129,8 +129,6 @@ int main() {
 	node_p tree = malloc(sizeof(struct node));
 	tree->data = 12;
 	tree->parent = tree->lson = tree->rson = NULL;
-
-
 	//构造文章开头图中的二叉树
 	tree_insert(tree, 15);
 	tree_insert(tree, 6);
@@ -144,7 +142,6 @@ int main() {
 	tree_insert(tree, 13);
 	tree_insert(tree, 9);
 	if (tree == NULL ) {
-
 		printf("null");
 	}
 	preorder_traverse(tree);

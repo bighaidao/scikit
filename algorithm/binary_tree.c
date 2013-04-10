@@ -38,6 +38,8 @@ void postorder_traverse(node_p tree) {
 void hang_traverse(node_p tree){
 
 }
+
+
 node_p tree_node_search(node_p root, int data) {
 
 	while (root != NULL ) {

@@ -1,4 +1,5 @@
 #include <stdio.h>
+//#include <stack>
 #include "head.h"
 void quick_sort(int *k_a, int low, int high) {
 	int i = low;
@@ -20,13 +21,13 @@ void quick_sort(int *k_a, int low, int high) {
 	if (i + 1 < high)
 		quick_sort(k_a, i + 1, high);
 }
-int main(){
-    puts("初始状态:");
-    int k_a[15] = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-    int size = 10;
-    print(k_a,size);
-    quick_sort(k_a,1,10);
-
-    puts("堆排序后:");
-    print(k_a,size);
-}
+//int main(){
+//    puts("初始状态:");
+//    int k_a[15] = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
+//    int size = 10;
+//    print(k_a,size);
+//    quick_sort(k_a,1,10);
+//
+//    puts("堆排序后:");
+//    print(k_a,size);
+//}

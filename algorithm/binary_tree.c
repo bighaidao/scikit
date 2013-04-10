@@ -7,6 +7,37 @@ struct node {
 };
 typedef struct node* node_p;
 
+//tarverse
+
+void preorder_traverse(node_p tree) {
+	if (tree != NULL ) {
+		printf("%d \n", tree->data);
+		preorder_traverse(tree->lson);
+		preorder_traverse(tree->rson);
+	}
+
+}
+
+void midorder_traverse(node_p tree) {
+	if (tree != NULL ) {
+		preorder_traverse(tree->lson);
+		printf("%d \n", tree->data);
+		preorder_traverse(tree->rson);
+
+	}
+}
+
+void postorder_traverse(node_p tree) {
+	if (tree != NULL ) {
+		preorder_traverse(tree->lson);
+		preorder_traverse(tree->rson);
+		printf("%d \n", tree->data);
+	}
+}
+
+void hang_traverse(node_p tree){
+
+}
 node_p tree_node_search(node_p root, int data) {
 
 	while (root != NULL ) {
@@ -35,6 +66,10 @@ void tree_insert(node_p root, int data) {
 		node->rson = NULL;
 		node->parent = NULL;
 	}
+	if (root == NULL ) {
+		root = node;
+		return;
+	}
 	while (x != NULL ) {
 		temp = x;
 		if (x->data > data) {
@@ -44,6 +79,11 @@ void tree_insert(node_p root, int data) {
 		}
 	}
 	node->parent = temp;
+	if (temp->data >= data) {
+		temp->lson = node;
+	} else {
+		temp->rson = node;
+	}
 
 }
 
@@ -53,25 +93,61 @@ void tree_node_delete(node_p root, int data) {
 
 		if (!node->rson) {  //无右儿子
 			node->parent->lson = node->lson;
-			node->lson->parent=node->parent;
+			node->lson->parent = node->parent;
 			free(node);
 		} else if (!node->lson) { //无左二子
 			node->parent->rson = node->rson;
-			node->rson->parent=node->parent;
+			node->rson->parent = node->parent;
 			free(node);
 		} else { //有兩個兒子
 //        先找前继
+
 			node_p s = node->lson;
-			node_p s_parent;
+
+			node_p s_parent = node;
 			while (s->rson) {
+				s_parent = s;
 				s = s->rson;
 			}
 			node->data = s->data;
+			if (s_parent != node) //test s->rson is null or not
+				s_parent->rson = s->lson;
+			else
+				s_parent->lson = s->lson;
+			free(s);
 
 		}
 	} else {
 
 		return;
 	}
+}
+
+int main() {
+	node_p tree = malloc(sizeof(struct node));
+	tree->data = 12;
+	tree->parent = tree->lson = tree->rson = NULL;
+
+
+	//构造文章开头图中的二叉树
+	tree_insert(tree, 15);
+	tree_insert(tree, 6);
+	tree_insert(tree, 18);
+	tree_insert(tree, 3);
+	tree_insert(tree, 7);
+	tree_insert(tree, 17);
+	tree_insert(tree, 20);
+	tree_insert(tree, 2);
+	tree_insert(tree, 4);
+	tree_insert(tree, 13);
+	tree_insert(tree, 9);
+	if (tree == NULL ) {
+
+		printf("null");
+	}
+	preorder_traverse(tree);
+	tree_node_delete(tree,15);
+	preorder_traverse(tree);
+	return 0;
 }
 

@@ -31,6 +31,8 @@ void union_set(int x, int y) {
 			parent[x] = y;
 		}
 }
+
+
 //int main() {
 //	int n, m;
 //  int i;  int i;

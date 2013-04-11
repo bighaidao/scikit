@@ -19,9 +19,9 @@ typedef struct rb_tree {
 /*-----------------------------------------------------------
  |   node           right
  |   / \    ==>     / \
-|  a  right      node  y
+ |  a  right      node  y
  |      / \      / \
-|       b  y    a   b
+ |      b  y    a   b
  -----------------------------------------------------------*/
 
 static void rb_rotate_left(rb_tree_p tree, rb_node_p parent) {
@@ -156,6 +156,7 @@ void rbtree_insert_fixup(rb_tree_p tree, rb_node_p node) {
 			}
 		}
 	}
+	tree->root->color = BLACK;
 }
 
 rb_node_p rbtree_delete_fixup(rb_tree_p tree, rb_node_p x) {
@@ -263,20 +264,20 @@ rb_node_p rbtree_delete(rb_tree_p tree, rb_node_p target) {
 	if (target->lson == tree->nil || target->rson == tree->nil)
 		y = target;
 	else
-		y = tree_successor(target);
+		y = tree_successor(target);//如果有两个儿子，则寻找后继
 
 	if (y->lson == tree->nil) //找到x
 		x = y->rson;
 	else
-		x = y->lson;
+		x = y->lson; //优先 lson
 	x->parent = y->parent;
-	if (y->parent == tree->nil)
+	if (y->parent == tree->nil) // y空的情况 就是root
 		tree->root = x;
 	else if (y->parent->lson == y)
 		y->parent->lson = x;
 	else
 		y->parent->rson = x;
-	if (target != y)
+	if (target != y)//删除的节点和真是要删除的节点不一致
 		target->data = y->data;
 	if (y->color == BLACK && x != tree->nil) {
 		rbtree_insert_fixup(tree, x);
@@ -284,23 +285,24 @@ rb_node_p rbtree_delete(rb_tree_p tree, rb_node_p target) {
 	return y;
 }
 
-void test_midorder_traverse(rb_node_p root,rb_node_p nil) {
+void test_midorder_traverse(rb_node_p root, rb_node_p nil) {
 
-	if (root != nil ) {
-		test_midorder_traverse(root->lson,nil);
+	if (root != nil) {
+		test_midorder_traverse(root->lson, nil);
 		printf("%d \t", root->data);
-		test_midorder_traverse(root->rson,nil);
+		printf("%d \t", root->color);
+		test_midorder_traverse(root->rson, nil);
 
 	}
 }
 
-void test_preorder_traverse(rb_node_p root,rb_node_p nil) {
+void test_preorder_traverse(rb_node_p root, rb_node_p nil) {
 
-	if (root != nil ) {
+	if (root != nil) {
 		printf("%d \t", root->data);
-		test_preorder_traverse(root->lson,nil);
+		test_preorder_traverse(root->lson, nil);
 
-		test_preorder_traverse(root->rson,nil);
+		test_preorder_traverse(root->rson, nil);
 
 	}
 }
@@ -311,21 +313,23 @@ int main(int argc, char **argv) {
 	rb_node_p node = malloc(sizeof(struct rb_node));
 	rb_node_p nil = malloc(sizeof(struct rb_node));
 	node->parent = node->lson = node->rson = nil;
-	node->data=20;
+	node->data = 20;
 	tree->root = node;
 	tree->nil = nil;
-	rbtree_insert(tree,10);
-	rbtree_insert(tree,3);
-	rbtree_insert(tree,12);
-	rbtree_insert(tree,42);
-	rbtree_insert(tree,5);
-	rbtree_insert(tree,6);
-	rbtree_insert(tree,7);
-	rbtree_insert(tree,8);
-	rbtree_insert(tree,9);
-	test_midorder_traverse(tree->root,tree->nil);
-	printf("%d \n");
-	test_preorder_traverse(tree->root,tree->nil);
+	rbtree_insert(tree, 10);
+	rbtree_insert(tree, 3);
+	rbtree_insert(tree, 12);
+	rbtree_insert(tree, 42);
+	rbtree_insert(tree, 5);
+	rbtree_insert(tree, 6);
+	rbtree_insert(tree, 7);
+	rbtree_insert(tree, 8);
+	rbtree_insert(tree, 9);
+	test_midorder_traverse(tree->root, tree->nil);
+	printf("\n");
+	test_preorder_traverse(tree->root, tree->nil);
+
+	printf("%d \n", tree->node_size);
 
 }
 

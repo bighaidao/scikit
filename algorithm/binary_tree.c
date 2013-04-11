@@ -125,28 +125,28 @@ void tree_node_delete(node_p root, int data) {
 	}
 }
 
-int main() {
-	node_p tree = malloc(sizeof(struct node));
-	tree->data = 12;
-	tree->parent = tree->lson = tree->rson = NULL;
-	//构造文章开头图中的二叉树
-	tree_insert(tree, 15);
-	tree_insert(tree, 6);
-	tree_insert(tree, 18);
-	tree_insert(tree, 3);
-	tree_insert(tree, 7);
-	tree_insert(tree, 17);
-	tree_insert(tree, 20);
-	tree_insert(tree, 2);
-	tree_insert(tree, 4);
-	tree_insert(tree, 13);
-	tree_insert(tree, 9);
-	if (tree == NULL ) {
-		printf("null");
-	}
-	preorder_traverse(tree);
-	tree_node_delete(tree,15);
-	preorder_traverse(tree);
-	return 0;
-}
+//int main() {
+//	node_p tree = malloc(sizeof(struct node));
+//	tree->data = 12;
+//	tree->parent = tree->lson = tree->rson = NULL;
+//	//构造文章开头图中的二叉树
+//	tree_insert(tree, 15);
+//	tree_insert(tree, 6);
+//	tree_insert(tree, 18);
+//	tree_insert(tree, 3);
+//	tree_insert(tree, 7);
+//	tree_insert(tree, 17);
+//	tree_insert(tree, 20);
+//	tree_insert(tree, 2);
+//	tree_insert(tree, 4);
+//	tree_insert(tree, 13);
+//	tree_insert(tree, 9);
+//	if (tree == NULL ) {
+//		printf("null");
+//	}
+//	preorder_traverse(tree);
+//	tree_node_delete(tree,15);
+//	preorder_traverse(tree);
+//	return 0;
+//}
 

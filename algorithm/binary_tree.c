@@ -34,11 +34,19 @@ void postorder_traverse(node_p tree) {
 		printf("%d \n", tree->data);
 	}
 }
-
-void hang_traverse(node_p tree){
-
+//depth
+int tree_depth(node_p tree) {
+	if (!tree) {
+		return 0;
+	}
+	int nleft  = tree_depth(tree->lson);
+	int nright = tree_depth(tree->rson);
+	return (nleft > nright) ? (nleft + 1) : (nright + 1);
 }
 
+void hang_traverse(node_p tree) {
+
+}
 
 node_p tree_node_search(node_p root, int data) {
 

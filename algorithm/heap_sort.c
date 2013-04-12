@@ -25,9 +25,10 @@ inline void max_heap_mdf(int *k_a, int idx, int size) {
 	}
 	if (rson < size && k_a[rson] > k_a[idx]) {
 
-		if(k_a[lson]>k_a[rson])
-		max_id = lson;
-		else  max_id = rson;
+		if (k_a[lson] > k_a[rson])
+			max_id = lson;
+		else
+			max_id = rson;
 	}
 //递归构建 大堆
 	if (max_id != idx) {
@@ -55,6 +56,35 @@ void heap_sort(int *k_a, int size) {
 //		print(k_a, size);
 	}
 
+}
+/**
+ *
+ * 给定k个已经排序的数组，每个数组的长度是n。设计一个k路归并排序算法，把这k个已排序的数组归并成一个排序的数组。
+思路：
+取k个数组的第一个元素，建一个大小为k的最小堆。
+从堆顶取走元素，插入到输出数组中。
+从取走的那个堆顶元素对应的数组，取下一个元素，并插入堆。
+循环，直至k个数组都为空。
+ *
+ */
+//将有序数组a[]和b[]合并到c[]中
+void memery_sort(int *a, int n, int b, int m, int *c) {
+	int i, j, k;
+	i = j = k = 0;
+	while (i < n && j < m) {
+		if (a[i] < b[j]) {
+			c[k] = a[i];
+			i++;
+		} else {
+			c[k] = b[j];
+			j++;
+		}
+		k++;
+	}
+	for (; i < n; i++)
+		c[k++] = a[i];
+	for (; j < m; j++)
+		c[k++] = b[j];
 }
 
 //int main() {

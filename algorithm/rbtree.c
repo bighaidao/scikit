@@ -306,30 +306,30 @@ void test_preorder_traverse(rb_node_p root, rb_node_p nil) {
 
 	}
 }
-int main(int argc, char **argv) {
-
-	rb_tree_p tree = malloc(sizeof(struct rb_tree));
-	tree->node_size = 0;
-	rb_node_p node = malloc(sizeof(struct rb_node));
-	rb_node_p nil = malloc(sizeof(struct rb_node));
-	node->parent = node->lson = node->rson = nil;
-	node->data = 20;
-	tree->root = node;
-	tree->nil = nil;
-	rbtree_insert(tree, 10);
-	rbtree_insert(tree, 3);
-	rbtree_insert(tree, 12);
-	rbtree_insert(tree, 42);
-	rbtree_insert(tree, 5);
-	rbtree_insert(tree, 6);
-	rbtree_insert(tree, 7);
-	rbtree_insert(tree, 8);
-	rbtree_insert(tree, 9);
-	test_midorder_traverse(tree->root, tree->nil);
-	printf("\n");
-	test_preorder_traverse(tree->root, tree->nil);
-
-	printf("%d \n", tree->node_size);
-
-}
+//int main(int argc, char **argv) {
+//
+//	rb_tree_p tree = malloc(sizeof(struct rb_tree));
+//	tree->node_size = 0;
+//	rb_node_p node = malloc(sizeof(struct rb_node));
+//	rb_node_p nil = malloc(sizeof(struct rb_node));
+//	node->parent = node->lson = node->rson = nil;
+//	node->data = 20;
+//	tree->root = node;
+//	tree->nil = nil;
+//	rbtree_insert(tree, 10);
+//	rbtree_insert(tree, 3);
+//	rbtree_insert(tree, 12);
+//	rbtree_insert(tree, 42);
+//	rbtree_insert(tree, 5);
+//	rbtree_insert(tree, 6);
+//	rbtree_insert(tree, 7);
+//	rbtree_insert(tree, 8);
+//	rbtree_insert(tree, 9);
+//	test_midorder_traverse(tree->root, tree->nil);
+//	printf("\n");
+//	test_preorder_traverse(tree->root, tree->nil);
+//
+//	printf("%d \n", tree->node_size);
+//
+//}
 

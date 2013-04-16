@@ -56,19 +56,19 @@ int kmp_search(int *next, const char *source, const char *target) {
 	}
 	return -1;
 }
-int main(int argc, char **argv) {
-
-	const char *s = "helloworld";
-	const char *target = "hello";
-	const char *target1 = "his";
-	int * next = kmp_next(target);
-	int k = 0;
-	while (k < strlen(target)) {
-		printf("%d \t", next[k]);
-		k++;
-	}
-
-	printf("%d \n", kmp_search(next, s, target));
-//	printf("%d \n", sample_str(s, target1, 0));
-}
+//int main(int argc, char **argv) {
+//
+//	const char *s = "helloworld";
+//	const char *target = "hello";
+//	const char *target1 = "his";
+//	int * next = kmp_next(target);
+//	int k = 0;
+//	while (k < strlen(target)) {
+//		printf("%d \t", next[k]);
+//		k++;
+//	}
+//
+//	printf("%d \n", kmp_search(next, s, target));
+////	printf("%d \n", sample_str(s, target1, 0));
+//}
 

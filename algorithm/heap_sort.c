@@ -68,7 +68,7 @@ void heap_sort(int *k_a, int size) {
  *
  */
 //将有序数组a[]和b[]合并到c[]中
-void memery_sort(int *a, int n, int b, int m, int *c) {
+void memery_sort(int *a, int n, int *b, int m, int *c) {
 	int i, j, k;
 	i = j = k = 0;
 	while (i < n && j < m) {
